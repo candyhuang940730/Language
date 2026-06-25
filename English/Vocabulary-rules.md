@@ -44,30 +44,12 @@ Avoid using basic verbs and adjectives. Practice replacing them with these:
 | **Important** | Paramount, crucial, vital | *Developing critical thinking skills is of paramount importance.* |
 | **Use** | Utilize, employ | *Schools should utilize interactive technology to engage students.* |
 
----
+## 📇 Flashcards (Markdown Table format)
 
-## 📇 Flashcards (Spaced Repetition Plugin format)
-> [!TIP]
-> The cards below are formatted for the **Spaced Repetition** plugin in Obsidian. If you update the words below, your flashcards will automatically update when you study!
+#flashcards
 
-#flashcards/ielts
-
-mitigate
-?
-*   **Part of Speech:** Verb (v.)
-*   **Meaning:** To make something less harmful, serious, or bad.
-*   **Example:** *Governments must act swiftly to mitigate climate risks.*
-
-detrimental
-?
-*   **Part of Speech:** Adjective (adj.)
-*   **Meaning:** Causing harm or damage.
-*   **Example:** *Too much screen time can have a detrimental effect on children's development.*
-
-paramount
-?
-*   **Part of Speech:** Adjective (adj.)
-*   **Meaning:** More important than anything else; supreme.
-*   **Example:** *In IELTS writing, clear paragraph structure is of paramount importance.*
-
-
+| Word | Meaning | Details |
+| --- | --- | --- |
+| mitigate | to make something less harmful, serious, or bad | Verb - Example: *Governments must act swiftly to mitigate climate risks.* |
+| detrimental | causing harm or damage | Adjective - Example: *Too much screen time can have a detrimental effect on children's development.* |
+| paramount | more important than anything else; supreme | Adjective - Example: *In IELTS writing, clear paragraph structure is of paramount importance.* |

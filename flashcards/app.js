@@ -277,12 +277,25 @@ async function processUploadedFiles(fileList) {
 
         // Identify Language based on path
         let language = 'Custom';
-        const lowerPath = path.toLowerCase();
-        if (lowerPath.includes('deutsch') || lowerPath.includes('german')) {
+        const pathParts = path.split('/');
+        if (pathParts.length > 1) {
+            const folderName = pathParts[0];
+            language = folderName.charAt(0).toUpperCase() + folderName.slice(1);
+        } else {
+            const lowerPath = path.toLowerCase();
+            if (lowerPath.includes('deutsch') || lowerPath.includes('german') || lowerPath.includes('deutch')) {
+                language = 'Deutsch';
+            } else if (lowerPath.includes('english')) {
+                language = 'English';
+            } else if (lowerPath.includes('japanese') || lowerPath.includes('日本語')) {
+                language = '日本語';
+            }
+        }
+        
+        // Normalize language name to align with features and speech synthesis
+        if (language.toLowerCase() === 'german' || language.toLowerCase() === 'deutch') {
             language = 'Deutsch';
-        } else if (lowerPath.includes('english')) {
-            language = 'English';
-        } else if (lowerPath.includes('japanese') || lowerPath.includes('日本語')) {
+        } else if (language.toLowerCase() === 'japanese') {
             language = '日本語';
         }
 
@@ -1059,11 +1072,26 @@ function speakText(text, langCode) {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = state.settings.voiceRate;
     
-    // Translate standard ISO language inputs
-    let voiceLang = 'en-US';
-    if (langCode === 'Deutsch') voiceLang = 'de-DE';
-    else if (langCode === '日本語') voiceLang = 'ja-JP';
-    else if (langCode === 'English') voiceLang = 'en-GB';
+    // Locale mapping table for future language support
+    const localesMap = {
+        'deutsch': 'de-DE', 'german': 'de-DE', 'deutch': 'de-DE',
+        'english': 'en-GB',
+        'japanese': 'ja-JP', '日本語': 'ja-JP',
+        'spanish': 'es-ES', 'español': 'es-ES', 'spain': 'es-ES',
+        'french': 'fr-FR', 'français': 'fr-FR',
+        'italian': 'it-IT', 'italiano': 'it-IT',
+        'dutch': 'nl-NL', 'nederlands': 'nl-NL',
+        'danish': 'da-DK', 'dansk': 'da-DK',
+        'portuguese': 'pt-PT', 'português': 'pt-PT',
+        'swedish': 'sv-SE', 'svenska': 'sv-SE',
+        'norwegian': 'no-NO', 'norsk': 'no-NO',
+        'icelandic': 'is-IS', 'íslenska': 'is-IS',
+        'chinese': 'zh-CN', '中文': 'zh-CN',
+        'korean': 'ko-KR', '한국어': 'ko-KR'
+    };
+
+    const cleanLangKey = langCode.toLowerCase().trim();
+    let voiceLang = localesMap[cleanLangKey] || 'en-US';
 
     utterance.lang = voiceLang;
 
