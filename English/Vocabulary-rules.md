@@ -52,8 +52,22 @@ Avoid using basic verbs and adjectives. Practice replacing them with these:
 
 #flashcards/ielts
 
-mitigate :: to make something less harmful, serious, or bad (e.g., mitigate risk)
-detrimental :: causing harm or damage; bad (e.g., detrimental effect)
-paramount :: more important than anything else; supreme (e.g., of paramount importance)
-exacerbate :: to make a problem or bad situation worse (e.g., exacerbate the problem)
+mitigate
+?
+*   **Part of Speech:** Verb (v.)
+*   **Meaning:** To make something less harmful, serious, or bad.
+*   **Example:** *Governments must act swiftly to mitigate climate risks.*
+
+detrimental
+?
+*   **Part of Speech:** Adjective (adj.)
+*   **Meaning:** Causing harm or damage.
+*   **Example:** *Too much screen time can have a detrimental effect on children's development.*
+
+paramount
+?
+*   **Part of Speech:** Adjective (adj.)
+*   **Meaning:** More important than anything else; supreme.
+*   **Example:** *In IELTS writing, clear paragraph structure is of paramount importance.*
+
 
