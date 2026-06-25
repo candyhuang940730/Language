@@ -11,14 +11,10 @@
             "id": "ce93ba407021479b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Deutsch.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Deutsch"
+              "title": "新分頁"
             }
           }
         ]

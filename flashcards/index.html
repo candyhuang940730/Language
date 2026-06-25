@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LingoFlip - A premium offline flashcard study application for language learning, parsing your local markdown notes with SRS and text-to-speech.">
+    <title>LingoFlip - Premium Local Flashcards</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+    <div id="particles-container"></div>
+    
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <header id="main-header" class="app-header">
+        <div class="header-logo" id="header-logo-container">
+            <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h1 class="logo-text">Lingo<span>Flip</span></h1>
+        </div>
+        
+        <div class="header-controls">
+            <!-- Streak -->
+            <div class="streak-badge" id="streak-badge-container" title="Daily Study Streak">
+                <i class="fa-solid fa-fire streak-icon"></i>
+                <span id="streak-count">0</span> Days
+            </div>
+            
+            <!-- Theme Toggle -->
+            <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+                <i class="fa-solid fa-sun"></i>
+            </button>
+            
+            <!-- Dashboard Button (hidden on upload page) -->
+            <button id="nav-dashboard-btn" class="text-btn hidden" title="Go to Dashboard">
+                <i class="fa-solid fa-house"></i> Dashboard
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content" class="app-container">
+        
+        <!-- ================= UPLOAD VIEW ================= -->
+        <section id="view-upload" class="view-section active-view">
+            <div class="hero-section">
+                <h2 class="hero-title">Practice Flashcards Directly From Your Notes</h2>
+                <p class="hero-subtitle">Select your language notes folder, and we will extract flashcards automatically. Your data never leaves your device.</p>
+            </div>
+            
+            <!-- Drag and Drop Box -->
+            <div id="drop-zone" class="drop-zone-container">
+                <div class="drop-zone-content">
+                    <div class="upload-icon-pulse">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </div>
+                    <h3>Drag & Drop your <code>Language</code> folder here</h3>
+                    <p class="drop-zone-divider">or</p>
+                    <button id="btn-select-folder" class="primary-btn">
+                        <i class="fa-solid fa-search"></i> Choose Notes Folder
+                    </button>
+                    <input type="file" id="folder-input" webkitdirectory directory multiple style="display: none;">
+                    <p class="upload-info">Supports folder uploads scanning English, Deutsch, and Japanese markdown files.</p>
+                </div>
+            </div>
+            
+            <!-- Alternative Text Paste -->
+            <div class="paste-alternative-card">
+                <div class="card-header">
+                    <h4><i class="fa-solid fa-keyboard"></i> Quick Practice (Paste Markdown)</h4>
+                    <button id="toggle-paste-btn" class="text-btn">Show Paste Area</button>
+                </div>
+                <div id="paste-area-container" class="paste-area-wrapper hidden">
+                    <p class="paste-description">Paste lines of text in the format <code>Word :: Definition</code> (e.g., <code>das Haus :: house</code>)</p>
+                    <textarea id="paste-textarea" placeholder="der Hund :: dog&#10;die Katze :: cat&#10;das Buch :: book" rows="6"></textarea>
+                    <button id="btn-parse-paste" class="secondary-btn">
+                        <i class="fa-solid fa-play"></i> Generate Cards From Paste
+                    </button>
+                </div>
+            </div>
+
+            <!-- Demo Card Button -->
+            <div class="demo-launcher-box">
+                <p>Don't have a folder ready yet?</p>
+                <button id="btn-load-demo" class="demo-btn">
+                    <i class="fa-solid fa-sparkles"></i> Try with Demo Vocabulary
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= DASHBOARD VIEW ================= -->
+        <section id="view-dashboard" class="view-section hidden">
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon purple"><i class="fa-solid fa-layer-group"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-decks-count">0</span>
+                        <span class="stat-label">Total Decks</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon blue"><i class="fa-solid fa-clone"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-cards-count">0</span>
+                        <span class="stat-label">Total Flashcards</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-learned-count">0</span>
+                        <span class="stat-label">Mastered (Easy)</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange"><i class="fa-solid fa-hourglass-half"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-pending-count">0</span>
+                        <span class="stat-label">Need Review</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-layout">
+                <!-- Decks List Section -->
+                <div class="decks-section">
+                    <div class="section-header">
+                        <h3><i class="fa-solid fa-book-open"></i> Your Decks</h3>
+                        <button id="btn-re-upload" class="text-btn-accent" title="Upload another folder">
+                            <i class="fa-solid fa-rotate"></i> Change Folder
+                        </button>
+                    </div>
+                    
+                    <div id="decks-list-container" class="decks-list">
+                        <!-- Loaded decks dynamically injected here -->
+                    </div>
+                </div>
+
+                <!-- Sidebar Controls & Settings -->
+                <div class="sidebar-section">
+                    <!-- General Settings -->
+                    <div class="panel-card">
+                        <h4><i class="fa-solid fa-sliders"></i> Study Settings</h4>
+                        
+                        <div class="setting-item">
+                            <label for="select-voice-rate">Speech Rate</label>
+                            <input type="range" id="select-voice-rate" min="0.5" max="1.5" step="0.1" value="1.0" class="styled-range">
+                        </div>
+
+                        <div class="setting-item toggle-setting">
+                            <span>Auto-play Pronunciation</span>
+                            <label class="switch">
+                                <input type="checkbox" id="setting-auto-tts" checked>
+                                <span class="slider round"></span>
+                            </</label>
+                        </div>
+                        
+                        <div class="setting-item toggle-setting">
+                            <span>Keyboard Shortcuts</span>
+                            <label class="switch">
+                                <input type="checkbox" id="setting-shortcuts" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Reset Options -->
+                    <div class="panel-card danger-panel">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Danger Zone</h4>
+                        <p class="panel-desc">Resetting will erase all study metrics, learned statuses, and history recorded on this browser.</p>
+                        <button id="btn-reset-stats" class="danger-btn">
+                            <i class="fa-solid fa-trash-can"></i> Clear Progress & Stats
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= STUDY VIEW ================= -->
+        <section id="view-study" class="view-section hidden">
+            <div class="session-nav">
+                <button id="study-back-btn" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</button>
+                <div class="deck-title-badge" id="study-deck-title">Deck: Deutsch Vocabulary</div>
+                <div class="session-progress-text">Card <span id="study-current-index">1</span> of <span id="study-total-cards">10</span></div>
+            </div>
+
+            <!-- Session Progress Bar -->
+            <div class="progress-bar-wrapper">
+                <div class="progress-bar-fill" id="study-progress-bar" style="width: 10%;"></div>
+            </div>
+
+            <!-- Flashcard Core Container -->
+            <div class="flashcard-arena">
+                <div class="card-3d-wrapper" id="flashcard-element">
+                    <!-- Front Side -->
+                    <div class="card-face card-front">
+                        <div class="card-meta">
+                            <span class="language-tag" id="card-front-lang">German</span>
+                            <button id="card-front-tts-btn" class="tts-icon-btn" title="Speak Word">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                        </div>
+                        <div class="card-main-content">
+                            <h3 class="card-word" id="card-front-word">das Haus</h3>
+                            <p class="card-hint" id="card-front-hint">Click to flip or press Space</p>
+                        </div>
+                        <div class="card-footer-info">
+                            <span class="deck-source" id="card-source-file">Deutsch/Vocabulary.md</span>
+                        </div>
+                    </div>
+                    <!-- Back Side -->
+                    <div class="card-face card-back">
+                        <div class="card-meta">
+                            <span class="language-tag secondary" id="card-back-lang">English</span>
+                            <button id="card-back-tts-btn" class="tts-icon-btn" title="Speak Answer">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                        </div>
+                        <div class="card-main-content">
+                            <h3 class="card-translation" id="card-back-translation">house / home</h3>
+                            <div class="card-details" id="card-back-details">
+                                <!-- Extra notes/context parsed dynamically -->
+                            </div>
+                        </div>
+                        <div class="card-footer-info">
+                            <span class="difficulty-level" id="card-status-badge">New Card</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="study-controls">
+                <button id="btn-show-answer" class="action-btn show-answer-btn">
+                    Reveal Answer <kbd>Space</kbd>
+                </button>
+                
+                <div id="srs-rating-buttons" class="srs-buttons-group hidden">
+                    <button id="btn-rate-hard" class="rate-btn hard" title="Repeat very soon">
+                        <span class="rate-title">Hard</span>
+                        <span class="rate-sub">Again</span>
+                        <kbd>1</kbd>
+                    </button>
+                    <button id="btn-rate-medium" class="rate-btn medium" title="Repeat later today">
+                        <span class="rate-title">Medium</span>
+                        <span class="rate-sub">Soon</span>
+                        <kbd>2</kbd>
+                    </button>
+                    <button id="btn-rate-easy" class="rate-btn easy" title="Mastered - hide for now">
+                        <span class="rate-title">Easy</span>
+                        <span class="rate-sub">Mastered</span>
+                        <kbd>3</kbd>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Keyboard shortcuts footer -->
+            <div class="keyboard-shortcuts-hint">
+                <span><kbd>Space</kbd> Flip Card</span>
+                <span><kbd>1</kbd> Hard</span>
+                <span><kbd>2</kbd> Medium</span>
+                <span><kbd>3</kbd> Easy</span>
+            </div>
+        </section>
+
+        <!-- ================= QUIZ VIEW ================= -->
+        <section id="view-quiz" class="view-section hidden">
+            <div class="session-nav">
+                <button id="quiz-back-btn" class="back-btn"><i class="fa-solid fa-arrow-left"></i> End Quiz</button>
+                <div class="deck-title-badge" id="quiz-deck-title">Deck: English TOEIC</div>
+                <div class="quiz-score-badge">Score: <span id="quiz-score-correct">0</span>/<span id="quiz-score-total">0</span></div>
+            </div>
+
+            <div class="progress-bar-wrapper">
+                <div class="progress-bar-fill" id="quiz-progress-bar" style="width: 0%;"></div>
+            </div>
+
+            <div class="quiz-card-container">
+                <div class="quiz-question-box">
+                    <div class="question-header">Translate the following word:</div>
+                    <div class="question-word" id="quiz-question-word">apple</div>
+                    <button id="quiz-tts-btn" class="tts-icon-btn inline" title="Speak Word">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                </div>
+
+                <!-- Multiple Choice Grid -->
+                <div id="quiz-options-container" class="quiz-options-grid">
+                    <!-- Dynamic buttons injected here -->
+                </div>
+                
+                <!-- Written Input (Hidden by default, can be toggled by user if they want writing tests) -->
+                <div id="quiz-written-container" class="quiz-written-wrapper hidden">
+                    <input type="text" id="quiz-written-input" placeholder="Type translation here..." autocomplete="off">
+                    <button id="quiz-written-submit-btn" class="primary-btn">Submit Answer</button>
+                </div>
+            </div>
+
+            <div class="quiz-feedback-banner hidden" id="quiz-feedback-box">
+                <span id="quiz-feedback-text">Correct!</span>
+                <button id="quiz-next-card-btn" class="primary-btn">Next Card <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <!-- ================= GERMAN SUFFIX GAME VIEW ================= -->
+        <section id="view-suffix-game" class="view-section hidden">
+            <div class="session-nav">
+                <button id="suffix-back-btn" class="back-btn"><i class="fa-solid fa-arrow-left"></i> End Game</button>
+                <div class="deck-title-badge">Deutsch Suffix-Gender Trainer</div>
+                <div class="quiz-score-badge">Score: <span id="suffix-score-correct">0</span>/<span id="suffix-score-total">0</span></div>
+            </div>
+
+            <div class="suffix-game-container">
+                <div class="suffix-instructions-card">
+                    <h3>Determine the Noun Gender!</h3>
+                    <p>In German, word endings (suffixes) are strong indicators of grammatical gender (<strong>der</strong>, <strong>die</strong>, or <strong>das</strong>). Pick the correct article based on the suffix rule!</p>
+                </div>
+
+                <div class="suffix-question-card">
+                    <div class="suffix-highlight" id="suffix-game-display">-ung</div>
+                    <p class="suffix-sub-display" id="suffix-game-word-hint">Example word: die Zeit<strong>ung</strong></p>
+                </div>
+
+                <!-- Gender choice buttons -->
+                <div class="gender-choice-grid">
+                    <button class="gender-btn-choice der" id="suffix-btn-der">
+                        <span class="gender-title">DER</span>
+                        <span class="gender-sub">Masculine</span>
+                    </button>
+                    <button class="gender-btn-choice die" id="suffix-btn-die">
+                        <span class="gender-title">DIE</span>
+                        <span class="gender-sub">Feminine</span>
+                    </button>
+                    <button class="gender-btn-choice das" id="suffix-btn-das">
+                        <span class="gender-title">DAS</span>
+                        <span class="gender-sub">Neuter</span>
+                    </button>
+                </div>
+
+                <!-- Feedback & Rule Explanation -->
+                <div id="suffix-feedback-panel" class="suffix-feedback-wrapper hidden">
+                    <div class="suffix-feedback-title" id="suffix-feedback-title">Correct!</div>
+                    <div class="suffix-feedback-explanation" id="suffix-feedback-desc">
+                        Words ending in <strong>-ung</strong> are always feminine (die). Examples: die Zeitung, die Wohnung.
+                    </div>
+                    <button id="suffix-btn-next" class="primary-btn">Next Rule <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer-bar">
+        <p>LingoFlip &copy; 2026. Custom pair-programmed with Antigravity AI. All notes remain client-side.</p>
+    </footer>
+
+    <!-- App Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>
