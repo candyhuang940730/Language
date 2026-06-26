@@ -16,3 +16,8 @@
 | das Haus | house | Noun - Plural: die Häuser <br> Das Haus ist groß. |
 | der Tisch | table | Noun - Plural: die Tische <br> Der Tisch ist groß. |
 | der Stuhl | chair | Noun - Plural: die Stühle <br> Der Stuhl ist groß. |
+| die Einladung | invitation | Noun - Plural: die Einladungen <br> Vielen Dank für die Einladung! |
+| entscheiden | to decide | Verb - Past: entschied, Has decided: hat entschieden <br> Ich kann mich nicht entscheiden. |
+| gemütlich | cozy / comfortable | Adjective - No plural <br> Das Wohnzimmer ist sehr gemütlich. |
+| die Erfahrung | experience | Noun - Plural: die Erfahrungen <br> Er hat viel Erfahrung im Beruf. |
+| versprechen | to promise | Verb - Past: versprach, Has promised: hat versprochen <br> Ich verspreche dir, dass ich komme. |
