@@ -57,7 +57,20 @@ LingoFlip features custom logic tailored for German grammar:
 
 ---
 
-### 3. Future Language Extensibility (Any New Language!)
+### 3. Japanese Note Format (`Japanese/` or `日本語/`)
+For Japanese vocabulary, you can use a detailed table structure containing the Kanji/Word, Hiragana reading, Romaji pronunciation, Meaning, and an example Sentence with Hiragana:
+
+*   **Markdown Table Format**:
+    ```markdown
+    | Word | Hiragana | Romaji | Meaning | Sentence with Hiragana |
+    | --- | --- | --- | --- | --- |
+    | 食べる | たべる | taberu | to eat | 私はりんごを食べます (わたしはりんごをたべます) |
+    | 学生 | がくせい | gakusei | student | 彼は学生です (かれはがくせいです) |
+    ```
+
+---
+
+### 4. Future Language Extensibility (Any New Language!)
 LingoFlip is built to grow with you. If you or your friends want to learn a new language, you don't need to change any code!
 
 #### How to Add a New Language:
