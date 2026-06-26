@@ -454,20 +454,28 @@ function parseMarkdownCards(text) {
 function processTable(headers, rows, cardsList) {
     if (headers.length < 2) return;
     
-    // Find index of German/Vocabulary/Term and Translation/Meaning
+    // Find index of columns intelligently
     let frontIdx = 0;
     let backIdx = 1;
     let detailsIdx = -1;
+    let hiraganaIdx = -1;
+    let romajiIdx = -1;
+    let sentenceIdx = -1;
 
     const lowerHeaders = headers.map(h => h.toLowerCase());
     
-    // Try to locate columns intelligently
     for (let i = 0; i < lowerHeaders.length; i++) {
         const h = lowerHeaders[i];
         if (h.includes('deutsch') || h.includes('word') || h.includes('term') || h.includes('vocabulary') || h.includes('kanji') || h.includes('front')) {
             frontIdx = i;
         } else if (h.includes('english') || h.includes('meaning') || h.includes('definition') || h.includes('translation') || h.includes('back')) {
             backIdx = i;
+        } else if (h.includes('hiragana') || h.includes('kana') || h.includes('よみ') || h.includes('読み方') || h.includes('yomikata')) {
+            hiraganaIdx = i;
+        } else if (h.includes('romaji') || h.includes('rōmaji') || h.includes('romanji') || h.includes('romanization')) {
+            romajiIdx = i;
+        } else if (h.includes('sentence') || h.includes('example') || h.includes('例文')) {
+            sentenceIdx = i;
         } else if (h.includes('gender') || h.includes('pronunciation') || h.includes('plural') || h.includes('note') || h.includes('details')) {
             detailsIdx = i;
         }
@@ -483,16 +491,31 @@ function processTable(headers, rows, cardsList) {
             const frontVal = row[frontIdx];
             const backVal = row[backIdx];
             let detailsVal = '';
-
-            if (detailsIdx !== -1 && row.length > detailsIdx) {
+            
+            const detailParts = [];
+            
+            if (hiraganaIdx !== -1 && row.length > hiraganaIdx && row[hiraganaIdx].trim()) {
+                detailParts.push(`<strong>Hiragana:</strong> ${row[hiraganaIdx].trim()}`);
+            }
+            if (romajiIdx !== -1 && row.length > romajiIdx && row[romajiIdx].trim()) {
+                detailParts.push(`<strong>Romaji:</strong> ${row[romajiIdx].trim()}`);
+            }
+            if (sentenceIdx !== -1 && row.length > sentenceIdx && row[sentenceIdx].trim()) {
+                detailParts.push(`<strong>Sentence:</strong> ${row[sentenceIdx].trim()}`);
+            }
+            if (detailsIdx !== -1 && row.length > detailsIdx && row[detailsIdx].trim()) {
                 // If there's a gender column, style it
                 const g = row[detailsIdx].toLowerCase().trim();
                 if (['der', 'die', 'das', 'masculine', 'feminine', 'neuter'].includes(g)) {
                     const article = g.startsWith('d') ? g : (g.startsWith('m') ? 'der' : (g.startsWith('f') ? 'die' : 'das'));
-                    detailsVal = `<span class="gender-span ${article}">${article.toUpperCase()}</span>`;
+                    detailParts.push(`<span class="gender-span ${article}">${article.toUpperCase()}</span>`);
                 } else {
-                    detailsVal = row[detailsIdx];
+                    detailParts.push(row[detailsIdx].trim());
                 }
+            }
+
+            if (detailParts.length > 0) {
+                detailsVal = detailParts.join('<br>');
             }
 
             if (frontVal && backVal) {
