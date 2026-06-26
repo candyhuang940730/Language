@@ -55,7 +55,7 @@
         <section id="view-upload" class="view-section active-view">
             <div class="hero-section">
                 <h2 class="hero-title">Practice Flashcards Directly From Your Notes</h2>
-                <p class="hero-subtitle">Select your language notes folder, and we will extract flashcards
+                <p class="hero-subtitle">Select your language notes files, and we will extract flashcards
                     automatically. Your data never leaves your device.</p>
             </div>
 
@@ -63,16 +63,15 @@
             <div id="drop-zone" class="drop-zone-container">
                 <div class="drop-zone-content">
                     <div class="upload-icon-pulse">
-                        <i class="fa-solid fa-folder-open"></i>
+                        <i class="fa-solid fa-file-arrow-up"></i>
                     </div>
-                    <h3>Drag & Drop your <code>Language</code> folder here</h3>
+                    <h3>Drag & Drop your markdown files here</h3>
                     <p class="drop-zone-divider">or</p>
-                    <button id="btn-select-folder" class="primary-btn">
-                        <i class="fa-solid fa-search"></i> Choose Notes Folder
+                    <button id="btn-select-files" class="primary-btn">
+                        <i class="fa-solid fa-search"></i> Choose Markdown Files
                     </button>
-                    <input type="file" id="folder-input" webkitdirectory directory multiple style="display: none;">
-                    <p class="upload-info">Supports folder uploads scanning English, Deutsch, and Japanese markdown
-                        files.</p>
+                    <input type="file" id="file-input" accept=".md" multiple style="display: none;">
+                    <p class="upload-info">Supports markdown file uploads scanning English, Deutsch, and Japanese files.</p>
                 </div>
             </div>
 
@@ -141,8 +140,8 @@
                 <div class="decks-section">
                     <div class="section-header">
                         <h3><i class="fa-solid fa-book-open"></i> Your Decks</h3>
-                        <button id="btn-re-upload" class="text-btn-accent" title="Upload another folder">
-                            <i class="fa-solid fa-rotate"></i> Change Folder
+                        <button id="btn-re-upload" class="text-btn-accent" title="Upload markdown files">
+                            <i class="fa-solid fa-rotate"></i> Change Files
                         </button>
                     </div>
 

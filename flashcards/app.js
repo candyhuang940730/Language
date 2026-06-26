@@ -121,13 +121,13 @@ function initializeEventListeners() {
         switchView('view-dashboard');
     });
     
-    // Folder Input & Drag/Drop
-    const folderInput = document.getElementById('folder-input');
-    const selectFolderBtn = document.getElementById('btn-select-folder');
+    // File Input & Drag/Drop
+    const fileInput = document.getElementById('file-input');
+    const selectFilesBtn = document.getElementById('btn-select-files');
     const dropZone = document.getElementById('drop-zone');
 
-    selectFolderBtn.addEventListener('click', () => folderInput.click());
-    folderInput.addEventListener('change', handleFolderSelect);
+    selectFilesBtn.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', handleFileSelect);
 
     dropZone.addEventListener('dragover', (e) => {
         e.preventDefault();
@@ -136,7 +136,7 @@ function initializeEventListeners() {
     dropZone.addEventListener('dragleave', () => {
         dropZone.classList.remove('dragover');
     });
-    dropZone.addEventListener('drop', handleFolderDrop);
+    dropZone.addEventListener('drop', handleFileDrop);
 
     // Paste Toggle & Submit
     const togglePasteBtn = document.getElementById('toggle-paste-btn');
@@ -215,13 +215,13 @@ function initializeEventListeners() {
 // ==========================================================================
 // File Upload & Drag-and-Drop Processing
 // ==========================================================================
-async function handleFolderSelect(e) {
+async function handleFileSelect(e) {
     const files = Array.from(e.target.files);
     if (files.length === 0) return;
     await processUploadedFiles(files);
 }
 
-async function handleFolderDrop(e) {
+async function handleFileDrop(e) {
     e.preventDefault();
     document.getElementById('drop-zone').classList.remove('dragover');
     
@@ -262,7 +262,7 @@ async function processUploadedFiles(fileList) {
     const mdFiles = fileList.filter(f => f.name.endsWith('.md'));
     
     if (mdFiles.length === 0) {
-        showToast('No markdown (.md) files found in this folder.', 'error');
+        showToast('No markdown (.md) files found.', 'error');
         return;
     }
 
