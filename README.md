@@ -11,10 +11,13 @@ It features **LingoFlip**, a premium, offline-capable flashcard web application 
 *   **[Deutsch/](file:///c:/Users/user/Desktop/Language/Deutsch/)**: German vocabulary lists and suffix-gender learning notes.
     *   [Deutch Gender Learn.md](file:///c:/Users/user/Desktop/Language/Deutsch/Deutch%20Gender%20Learn.md): Key suffix rules for mapping word endings to German articles (*der*, *die*, *das*).
     *   [Deutsch word list.md](file:///c:/Users/user/Desktop/Language/Deutsch/Deutsch%20word%20list.md): A collection of German vocabulary cards formatted as a markdown table.
+    *   [Vocabulary-rules.md](file:///c:/Users/user/Desktop/Language/Deutsch/Vocabulary-rules.md): transition phrases and academic synonyms lists.
 *   **[English/](file:///c:/Users/user/Desktop/Language/English/)**: English vocabulary lists for TOEIC and IELTS preparation.
     *   [Vocabulary.md](file:///c:/Users/user/Desktop/Language/English/Vocabulary.md): Core flashcards list.
     *   [Vocabulary-rules.md](file:///c:/Users/user/Desktop/Language/English/Vocabulary-rules.md): transition phrases and academic synonyms lists.
 *   **[日本語/](file:///c:/Users/user/Desktop/Language/日本語/)**: Japanese vocabulary notes.
+    *   [日本語-Hiragana.md](file:///c:/Users/user/Desktop/Language/日本語/日本語-Hiragana.md): Japanese vocabulary cards.
+    *   [Vocabulary-rules.md](file:///c:/Users/user/Desktop/Language/日本語/Vocabulary-rules.md): transition phrases and academic synonyms lists.
 *   **[flashcards/](file:///c:/Users/user/Desktop/Language/flashcards/)**: The core engine of the **LingoFlip** flashcard application.
 
 ---

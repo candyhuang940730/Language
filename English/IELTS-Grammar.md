@@ -4,7 +4,7 @@
 
 ## 📇 Flashcards (Markdown Table format)
 
-| Grammar	 | Meaning | Details |
+| Word | Meaning | Details |
 | --- | --- | --- |
 | Not only... but also... (Inversion) | Used to emphasize two related points, with the first clause inverted. | Structure: Not only + auxiliary verb + subject + verb + but also... <br> Example: Not only did the government invest in green energy, but they also subsidized public transport. |
 | Had I known... (3rd Conditional) | Used to talk about hypothetical past situations and their outcomes. | Structure: Had + subject + past participle, subject + would have + past participle <br> Example: Had the city council acted sooner, the flood damage would have been minimized. |

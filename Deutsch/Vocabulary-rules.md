@@ -33,15 +33,15 @@ Nutzen Sie diesen Notizzettel, um anspruchsvolle Vokabeln, Wendungen und Konnekt
 ## 📚 Akademische & gehobene Synonyme
 Vermeiden Sie allzu einfache Verben und Adjektive. Versuchen Sie stattdessen, diese zu verwenden:
 
-| Einfaches Wort | Gehobene Alternative | Beispielsatz |
-| :--- | :--- | :--- |
-| **Gut** | Vorteilhaft, förderlich, positiv | *Diese Entscheidung hat sich als äußerst vorteilhaft für die Gemeinschaft erwiesen.* |
-| **Schlecht** | Nachteilig, schädlich, ungünstig | *Schlafmangel hat eine nachteilige Wirkung auf die kognitiven Funktionen.* |
-| **Viele** | Eine Vielzahl von, erheblich, zahlreich | *Es gibt eine Vielzahl von Möglichkeiten für moderne Verbraucher.* |
-| **Schlimmer werden** | Sich verschlechtern, sich verschlimmern | *Das Ignorieren von Problemen wird die Situation nur verschlimmern.* |
-| **Lösen** | Abschwächen, bewältigen, lösen | *Regierungen müssen schnell handeln, um Klimarisiken abzuschwächen.* |
-| **Wichtig** | Von entscheidender Bedeutung, wesentlich, unerlässlich | *Kritisches Denken ist für Studierende von entscheidender Bedeutung.* |
-| **Nutzen** | Nutzen, anwenden, einsetzen | *Schulen sollten interaktive Medien nutzen, um Schüler zu motivieren.* |
+| Word | Meaning | Details |
+| --- | --- | --- |
+| Gut | Vorteilhaft, förderlich, positiv | Beispiel: *Diese Entscheidung hat sich als äußerst vorteilhaft für die Gemeinschaft erwiesen.* |
+| Schlecht | Nachteilig, schädlich, ungünstig | Beispiel: *Schlafmangel hat eine nachteilige Wirkung auf die kognitiven Funktionen.* |
+| Viele | Eine Vielzahl von, erheblich, zahlreich | Beispiel: *Es gibt eine Vielzahl von Möglichkeiten für moderne Verbraucher.* |
+| Schlimmer werden | Sich verschlechtern, sich verschlimmern | Beispiel: *Das Ignorieren von Problemen wird die Situation nur verschlimmern.* |
+| Lösen | Abschwächen, bewältigen, lösen | Beispiel: *Regierungen müssen schnell handeln, um Klimarisiken abzuschwächen.* |
+| Wichtig | Von entscheidender Bedeutung, wesentlich, unerlässlich | Beispiel: *Kritisches Denken ist für Studierende von entscheidender Bedeutung.* |
+| Nutzen | Nutzen, anwenden, einsetzen | Beispiel: *Schulen sollten interaktive Medien nutzen, um Schüler zu motivieren.* |
 
 ## 📇 Flashcards (Markdown Table format)
 

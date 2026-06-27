@@ -34,15 +34,15 @@ Use this note to store high-scoring vocabulary, collocations, and transition phr
 ## 📚 Academic & High-Scoring Synonyms
 Avoid using basic verbs and adjectives. Practice replacing them with these:
 
-| Basic Word | IELTS Alternative | Example Sentence |
-| :--- | :--- | :--- |
-| **Good** | Advantageous, beneficial, positive | *This policy has proved highly beneficial for the community.* |
-| **Bad** | Detrimental, adverse, unfavorable | *Sleeplessness has a detrimental effect on cognitive function.* |
-| **Many/A lot** | A myriad of, substantial, numerous | *There are a myriad of options available to modern consumers.* |
-| **Get worse** | Deteriorate, exacerbate | *Ignoring structural problems will only exacerbate the issue.* |
-| **Solve** | Mitigate, address, resolve | *Governments must act swiftly to mitigate climate risks.* |
-| **Important** | Paramount, crucial, vital | *Developing critical thinking skills is of paramount importance.* |
-| **Use** | Utilize, employ | *Schools should utilize interactive technology to engage students.* |
+| Word | Meaning | Details |
+| --- | --- | --- |
+| Good | Advantageous, beneficial, positive | Example: *This policy has proved highly beneficial for the community.* |
+| Bad | Detrimental, adverse, unfavorable | Example: *Sleeplessness has a detrimental effect on cognitive function.* |
+| Many / A lot | A myriad of, substantial, numerous | Example: *There are a myriad of options available to modern consumers.* |
+| Get worse | Deteriorate, exacerbate | Example: *Ignoring structural problems will only exacerbate the issue.* |
+| Solve | Mitigate, address, resolve | Example: *Governments must act swiftly to mitigate climate risks.* |
+| Important | Paramount, crucial, vital | Example: *Developing critical thinking skills is of paramount importance.* |
+| Use | Utilize, employ | Example: *Schools should utilize interactive technology to engage students.* |
 
 ## 📇 Flashcards (Markdown Table format)
 
