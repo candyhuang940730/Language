@@ -15,3 +15,8 @@
 | obstacle | something that blocks your way or makes progress difficult | Noun - Example: Lack of funding remains a major obstacle to the research project. |
 | enhance | to improve the quality, amount, or strength of something | Verb - Example: Regular exercise can significantly enhance your immune system. |
 | reliable | able to be trusted to work well and consistently | Adjective - Example: We need to find a reliable supplier for these electronic components. |
+| stable | firmly fixed or not likely to change or fail | Adjective - Example: A stable economy encourages long-term investment from overseas. |
+| pursue | to follow or try to achieve something over a period of time | Verb - Example: Many graduates choose to pursue further studies abroad. |
+| evidence | facts or information indicating whether a belief or proposition is true | Noun - Example: The researchers gathered strong evidence to support their new theory. |
+| prohibit | to officially forbid something by law or rule | Verb - Example: Most countries prohibit driving without a valid license. |
+| efficient | working productively without wasting time, money, or energy | Adjective - Example: Using public transport is often more efficient than driving in rush hour. |
