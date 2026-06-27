@@ -376,10 +376,29 @@
         </section>
     </main>
 
+    <!-- Custom Confirmation Modal -->
+    <div id="confirm-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <i class="fa-solid fa-triangle-exclamation modal-warn-icon"></i>
+                <h3>Clear Progress & Stats?</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to clear all your study metrics, streak, and history? This action cannot be undone.</p>
+            </div>
+            <div class="modal-actions">
+                <button id="btn-confirm-cancel" class="secondary-btn">Cancel</button>
+                <button id="btn-confirm-ok" class="danger-btn">Clear Everything</button>
+            </div>
+        </div>
+    </div>
+
     <footer class="app-footer-bar">
         <p>LingoFlip &copy; 2026. Custom pair-programmed with Antigravity AI. All notes remain client-side.</p>
     </footer>
 
+    <!-- Streak Backup Data -->
+    <script src="day_count.js"></script>
     <!-- App Logic Script -->
     <script src="app.js"></script>
 </body>

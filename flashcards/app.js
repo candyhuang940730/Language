@@ -157,6 +157,13 @@ function initializeEventListeners() {
 
     // Reset Progress
     document.getElementById('btn-reset-stats').addEventListener('click', handleResetStats);
+    document.getElementById('btn-confirm-cancel').addEventListener('click', () => {
+        document.getElementById('confirm-modal').classList.remove('active');
+    });
+    document.getElementById('btn-confirm-ok').addEventListener('click', () => {
+        document.getElementById('confirm-modal').classList.remove('active');
+        executeResetStats();
+    });
 
     // Settings listeners
     document.getElementById('select-voice-rate').addEventListener('input', (e) => {
@@ -413,8 +420,8 @@ function parseMarkdownCards(text) {
             const front = line.substring(0, splitIndex).replace(/^-\s+/, '');
             const back = line.substring(splitIndex + 2);
             cards.push({
-                front: cleanWord(front),
-                back: cleanWord(back),
+                front: escapeHTML(cleanWord(front)),
+                back: escapeHTML(cleanWord(back)),
                 details: ''
             });
             continue;
@@ -423,8 +430,8 @@ function parseMarkdownCards(text) {
         if (line.includes(' -> ')) {
             const parts = line.split(' -> ');
             cards.push({
-                front: cleanWord(parts[0].replace(/^-\s+/, '')),
-                back: cleanWord(parts[1]),
+                front: escapeHTML(cleanWord(parts[0].replace(/^-\s+/, ''))),
+                back: escapeHTML(cleanWord(parts[1])),
                 details: ''
             });
             continue;
@@ -434,8 +441,8 @@ function parseMarkdownCards(text) {
         const bulletMatch = line.match(/^[\*\-\+]\s+([^\:]+)\s*\:\s*(.+)$/);
         if (bulletMatch) {
             cards.push({
-                front: cleanWord(bulletMatch[1]),
-                back: cleanWord(bulletMatch[2]),
+                front: escapeHTML(cleanWord(bulletMatch[1])),
+                back: escapeHTML(cleanWord(bulletMatch[2])),
                 details: ''
             });
             continue;
@@ -488,29 +495,30 @@ function processTable(headers, rows, cardsList) {
 
     for (const row of rows) {
         if (row.length > Math.max(frontIdx, backIdx)) {
-            const frontVal = row[frontIdx];
-            const backVal = row[backIdx];
+            const frontVal = row[frontIdx] ? row[frontIdx].trim() : '';
+            const backVal = row[backIdx] ? row[backIdx].trim() : '';
             let detailsVal = '';
             
             const detailParts = [];
             
             if (hiraganaIdx !== -1 && row.length > hiraganaIdx && row[hiraganaIdx].trim()) {
-                detailParts.push(`<strong>Hiragana:</strong> ${row[hiraganaIdx].trim()}`);
+                detailParts.push(`<strong>Hiragana:</strong> ${escapeHTML(row[hiraganaIdx].trim())}`);
             }
             if (romajiIdx !== -1 && row.length > romajiIdx && row[romajiIdx].trim()) {
-                detailParts.push(`<strong>Romaji:</strong> ${row[romajiIdx].trim()}`);
+                detailParts.push(`<strong>Romaji:</strong> ${escapeHTML(row[romajiIdx].trim())}`);
             }
             if (sentenceIdx !== -1 && row.length > sentenceIdx && row[sentenceIdx].trim()) {
-                detailParts.push(`<strong>Sentence:</strong> ${row[sentenceIdx].trim()}`);
+                detailParts.push(`<strong>Sentence:</strong> ${escapeHTML(row[sentenceIdx].trim())}`);
             }
             if (detailsIdx !== -1 && row.length > detailsIdx && row[detailsIdx].trim()) {
                 // If there's a gender column, style it
-                const g = row[detailsIdx].toLowerCase().trim();
+                const rawDetails = row[detailsIdx].trim();
+                const g = rawDetails.toLowerCase();
                 if (['der', 'die', 'das', 'masculine', 'feminine', 'neuter'].includes(g)) {
                     const article = g.startsWith('d') ? g : (g.startsWith('m') ? 'der' : (g.startsWith('f') ? 'die' : 'das'));
                     detailParts.push(`<span class="gender-span ${article}">${article.toUpperCase()}</span>`);
                 } else {
-                    detailParts.push(row[detailsIdx].trim());
+                    detailParts.push(escapeHTML(rawDetails));
                 }
             }
 
@@ -520,8 +528,8 @@ function processTable(headers, rows, cardsList) {
 
             if (frontVal && backVal) {
                 cardsList.push({
-                    front: frontVal.trim(),
-                    back: backVal.trim(),
+                    front: escapeHTML(frontVal),
+                    back: escapeHTML(backVal),
                     details: detailsVal.trim()
                 });
             }
@@ -716,8 +724,8 @@ function startStudySession(deckId) {
     // Sort by priority (ascending, so Hard(0) & Medium(1) first)
     sortedCards.sort((a, b) => a.priority - b.priority);
 
-    // Limit study sessions to 10 cards to prevent fatigue
-    state.sessionCards = sortedCards.slice(0, 10).map(item => item.card);
+    // Study sessions will contain all cards in the deck/file
+    state.sessionCards = sortedCards.map(item => item.card);
     state.currentSessionIndex = 0;
     state.isCardFlipped = false;
 
@@ -1184,10 +1192,22 @@ function saveProgress() {
 
 // Daily Streak tracking
 function updateStreak() {
-    const streakVal = localStorage.getItem('lingoflip_streak_count') || 0;
-    const lastDateStr = localStorage.getItem('lingoflip_last_study_date');
+    let streakVal = localStorage.getItem('lingoflip_streak_count');
+    let lastDateStr = localStorage.getItem('lingoflip_last_study_date');
 
-    state.streak = parseInt(streakVal);
+    // Fallback to day_count.js backup if localStorage has no streak data
+    if (streakVal === null && typeof window !== 'undefined' && window.LingoFlipStreak) {
+        streakVal = window.LingoFlipStreak.streak;
+        lastDateStr = window.LingoFlipStreak.lastStudyDate;
+        localStorage.setItem('lingoflip_streak_count', streakVal);
+        if (lastDateStr) {
+            localStorage.setItem('lingoflip_last_study_date', lastDateStr);
+        } else {
+            localStorage.removeItem('lingoflip_last_study_date');
+        }
+    }
+
+    state.streak = streakVal ? parseInt(streakVal) : 0;
     state.lastStudyDate = lastDateStr ? new Date(lastDateStr) : null;
 
     if (state.lastStudyDate) {
@@ -1234,19 +1254,32 @@ function trackStudyActivity() {
 }
 
 function handleResetStats() {
-    if (confirm('Are you sure you want to clear all your study metrics, streak, and history? This cannot be undone.')) {
-        localStorage.removeItem('lingoflip_card_progress');
-        localStorage.removeItem('lingoflip_streak_count');
-        localStorage.removeItem('lingoflip_last_study_date');
-        
-        state.cardProgress = {};
-        state.streak = 0;
-        state.lastStudyDate = null;
-        
-        updateStreak();
-        renderDecksList();
-        showToast('All progress metrics cleared!', 'info');
+    // Show custom modal instead of native confirm
+    const modal = document.getElementById('confirm-modal');
+    modal.classList.add('active');
+}
+
+function executeResetStats() {
+    localStorage.removeItem('lingoflip_card_progress');
+    localStorage.removeItem('lingoflip_streak_count');
+    localStorage.removeItem('lingoflip_last_study_date');
+    
+    // Reset in-memory fallback backup streak so it does not immediately override
+    if (typeof window !== 'undefined' && window.LingoFlipStreak) {
+        window.LingoFlipStreak.streak = 0;
+        window.LingoFlipStreak.lastStudyDate = "";
     }
+    
+    state.cardProgress = {};
+    state.streak = 0;
+    state.lastStudyDate = null;
+    
+    // Explicitly set to 0 in localStorage to prevent fallback on next loading
+    localStorage.setItem('lingoflip_streak_count', 0);
+    
+    updateStreak();
+    renderDecksList();
+    showToast('All progress metrics cleared!', 'info');
 }
 
 // Preserve folder selection state when re-opening
@@ -1290,13 +1323,14 @@ function toggleTheme() {
         body.classList.add('light-theme');
         state.theme = 'light';
         themeIcon.className = 'fa-solid fa-moon';
-        showToast('Switched to light theme', 'info');
+        // Funny light mode message
+        showToast('Switched to light mode – let the sunshine in! 😎', 'info');
     } else {
         body.classList.remove('light-theme');
         body.classList.add('dark-theme');
         state.theme = 'dark';
         themeIcon.className = 'fa-solid fa-sun';
-        showToast('Switched to dark theme', 'info');
+        showToast('Switched to dark mode – welcome to the shadows! 🌙', 'info');
     }
 }
 
@@ -1385,6 +1419,16 @@ function handleKeyDown(e) {
 }
 
 // --- General Helpers ---
+function escapeHTML(str) {
+    if (!str) return '';
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
 function getCardId(deckId, card) {
     // Generate unique card reference
     return `${deckId}_${card.front.replace(/\s+/g, '_')}`;
