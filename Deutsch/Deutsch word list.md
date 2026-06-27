@@ -21,3 +21,8 @@
 | gemütlich | cozy / comfortable | Adjective - No plural <br> Das Wohnzimmer ist sehr gemütlich. |
 | die Erfahrung | experience | Noun - Plural: die Erfahrungen <br> Er hat viel Erfahrung im Beruf. |
 | versprechen | to promise | Verb - Past: versprach, Has promised: hat versprochen <br> Ich verspreche dir, dass ich komme. |
+| die Verbindung | connection / transfer | Noun - Plural: die Verbindungen <br> Die Zugverbindung nach Hamburg ist sehr gut. |
+| empfehlen | to recommend | Verb - Past: empfahl, Has recommended: hat empfohlen <br> Welches Restaurant kannst du empfehlen? |
+| pünktlich | punctual / on time | Adjective - No plural <br> Der Bus kommt hoffentlich pünktlich. |
+| die Postkarte | postcard | Noun - Plural: die Postkarten <br> Ich schreibe eine Postkarte an meine Familie. |
+| bestellen | to order | Verb - Past: bestellte, Has ordered: hat bestellt <br> Wir möchten das Essen bestellen. |
