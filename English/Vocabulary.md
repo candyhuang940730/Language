@@ -20,3 +20,8 @@
 | evidence | facts or information indicating whether a belief or proposition is true | Noun - Example: The researchers gathered strong evidence to support their new theory. |
 | prohibit | to officially forbid something by law or rule | Verb - Example: Most countries prohibit driving without a valid license. |
 | efficient | working productively without wasting time, money, or energy | Adjective - Example: Using public transport is often more efficient than driving in rush hour. |
+| accurate | correct, exact, and without any mistakes | Adjective - Example: It is crucial to provide accurate data in academic research. |
+| consume | to use fuel, energy, time, or food | Verb - Example: Electric vehicles consume less energy compared to traditional cars. |
+| trend | a general direction in which something is developing or changing | Noun - Example: There is a growing trend toward remote working worldwide. |
+| abandon | to leave a place, thing, or person forever | Verb - Example: The bad weather forced the team to abandon their outdoor experiment. |
+| flexible | able to change or be changed easily according to the situation | Adjective - Example: Having a flexible schedule allows students to manage their time better. |
