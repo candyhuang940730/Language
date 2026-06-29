@@ -26,8 +26,13 @@
 | pünktlich | punctual / on time | Adjective - No plural <br> Der Bus kommt hoffentlich pünktlich. | The bus hopefully comes on time. |
 | die Postkarte | postcard | Noun - Plural: die Postkarten <br> Ich schreibe eine Postkarte an meine Familie. | I am writing a postcard to my family. |
 | bestellen | to order | Verb - Past: bestellte, Has ordered: hat bestellt <br> Wir möchten das Essen bestellen. | We would like to order the food. |
-| der Reisepass | passport | Noun - Plural: die Reisepässe <br> Vergiss deinen Reisepass nicht! (Don't forget your passport!) | Don't forget your passport! |
-| buchen | to book / to reserve | Verb - Past: buchte, Has booked: hat gebucht <br> Ich habe gestern einen Flug gebucht. (I booked a flight yesterday.) | I booked a flight yesterday. |
-| unterwegs | on the way / on the road | Adverb - No plural <br> Ich bin schon unterwegs zu dir. (I am already on my way to you.) | I am already on my way to you. |
-| die Post | post office / mail | Noun - Plural: rare (usually singular) <br> Wo ist die nächste Post? (Where is the nearest post office?) | Where is the nearest post office? |
+| der Reisepass | passport | Noun - Plural: die Reisepässe <br> Vergiss deinen Reisepass nicht! | Don't forget your passport! |
+| buchen | to book / to reserve | Verb - Past: buchte, Has booked: hat gebucht <br> Ich habe gestern einen Flug gebucht. | I booked a flight yesterday. |
+| unterwegs | on the way / on the road | Adverb - No plural <br> Ich bin schon unterwegs zu dir.  | I am already on my way to you. |
+| die Post | post office / mail | Noun - Plural: rare (usually singular) <br> Wo ist die nächste Post?  | Where is the nearest post office? |
 | verpassen | to miss (a train, flight, etc.) | Verb - Past: verpasste, Has missed: hat verpasst <br> Beeil dich, sonst verpassen wir den Zug! | Hurry up, otherwise we will miss the train! |
+| das Geschenk | gift / present | Noun - Plural: die Geschenke <br> Das Geschenk ist für meine Freundin.  | The gift is for my friend. |
+| verstehen | to understand | Verb - Past: verstand, Has understood: hat verstanden <br> Ich verstehe den Satz nicht. | I don't understand the sentence. |
+| wichtig | important | Adjective - No plural <br> Das ist eine wichtige Frage. | That is an important question. |
+| die Nachricht | news / message | Noun - Plural: die Nachrichten <br> Ich habe deine Nachricht gestern bekommen. | I received your message yesterday. |
+| besuchen | to visit | Verb - Past: besuchte, Has visited: hat besucht <br> Am Wochenende besuche ich meine Großeltern. | On the weekend I am visiting my grandparents. |
