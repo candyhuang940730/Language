@@ -25,3 +25,8 @@
 | trend | a general direction in which something is developing or changing | Noun - Example: There is a growing trend toward remote working worldwide. |
 | abandon | to leave a place, thing, or person forever | Verb - Example: The bad weather forced the team to abandon their outdoor experiment. |
 | flexible | able to change or be changed easily according to the situation | Adjective - Example: Having a flexible schedule allows students to manage their time better. |
+| obvious | easy to see, recognize, or understand | Adjective - Example: It is obvious that technological development has changed how we communicate. |
+| maintain | to continue to have something; to keep something in good condition | Verb - Example: Regular maintenance helps to maintain the performance of your vehicle. |
+| benefit | an advantage or useful effect that something has | Noun - Example: One major benefit of learning a second language is improved cognitive flexibility. |
+| reject | to refuse to accept, use, or believe something | Verb - Example: The university committee decided to reject the initial proposal due to budget constraints. |
+| sustainable | able to continue over a period of time without causing damage to the environment | Adjective - Example: Finding sustainable energy sources is one of the biggest challenges of this century. |
